@@ -8,6 +8,8 @@ import { dbConnection } from './db.js';
 import { corsOptions } from './cors-configuration.js'
 import { helmetConfiguration } from './helmet-configuration.js'
 
+import fieldsRoutes from '../src/fields/field.routes.js';
+
 const BASE_PATH = '/kinalSportsAdmin/v1';
 
 const middlewares = (app) => {
@@ -19,6 +21,8 @@ const middlewares = (app) => {
 }
 
 const routes = (app) => {
+
+    app.use(`${BASE_PATH}/fields`, fieldsRoutes);
 
     app.get(`${BASE_PATH}/Health`, (request, response) => {
         response.status(200).json({

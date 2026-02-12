@@ -5,15 +5,9 @@ export const createField = async (req, res) => {
 
         const fieldData = req.body;
 
-        /*if (req.file){
-            const extension = req.file.split('.').pop();
-            const filename = req.file.filename;
-            const relativePath = filename.substring(filename.indexOf('/fields'));
-
-            fieldData.photo = `${relativePath}.${extension}`;
-        } else {
-            fieldData.photo = 'fields/kinal_sports_myvxo5';
-        }*/
+        if(req.file){
+            fieldData.photo = req.file.path;
+        }
 
         const field = new Field(fieldData);
         await field.save();
